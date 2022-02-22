@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import React, { useContext, useMemo } from 'react';
 import Context from '../../Model/Context';
 
-import { Container } from './styles';
 
 const refDuration = 0.22;
 
@@ -18,7 +17,6 @@ const DropdownBackground: React.FC = () => {
   const backgroundHeight = cachedOption?.backgroundHeight || 0;
 
   return (
-    <Container>
       <motion.div
         className="dropdown-background"
         animate={{
@@ -29,7 +27,6 @@ const DropdownBackground: React.FC = () => {
           duration: refDuration,
         }}
       />
-    </Container>
   );
 };
 

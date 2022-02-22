@@ -2,9 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import Context, { OptionModel } from '../Model/Context';
 
-import { Container } from './styles';
- 
-const  DropdownProvider: React.FC = ({ children }) => {
+const DropdownProvider: React.FC = ({ children }) => {
 
   const [registeredOptions, setRegisteredOptions] = useState<OptionModel[]>([]);
   const [targetId, setTargetId] = useState(null);
@@ -13,7 +11,7 @@ const  DropdownProvider: React.FC = ({ children }) => {
   const registerOption = useCallback((model: OptionModel) => {
     setRegisteredOptions(items => [...items, model]);
   }, [setRegisteredOptions]);
- 
+
   const updateOptionProps = useCallback((optionId: number, content: any) => {
     setRegisteredOptions((items) => items.map((item) => {
       if (item.id === optionId) {
@@ -49,9 +47,7 @@ const  DropdownProvider: React.FC = ({ children }) => {
         deleteOptionById
       }}
     >
-      <Container>
-        {children}
-      </Container>
+      {children}
     </Context.Provider>
   );
 };

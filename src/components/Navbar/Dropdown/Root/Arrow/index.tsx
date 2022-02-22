@@ -2,8 +2,6 @@ import { motion } from 'framer-motion';
 import React, { useContext, useMemo } from 'react';
 import Context from '../../Model/Context';
 
-import { Container } from './styles';
-
 interface Props{
   isFirstInteraction: boolean;
 }
@@ -22,7 +20,6 @@ const DropdownArrow: React.FC<Props> = ({ isFirstInteraction }) => {
   const x = cachedOption ? cachedOption.optionCenterX : 0;
 
   return (
-    <Container>
       <motion.div
         className="dropdown-arrow"
         initial={{
@@ -38,7 +35,6 @@ const DropdownArrow: React.FC<Props> = ({ isFirstInteraction }) => {
           x: { duration: isFirstInteraction ? 0 : refDuration },
         }}
       />
-    </Container>
   );
 };
 

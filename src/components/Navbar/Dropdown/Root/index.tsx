@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import Context from '../Model/Context';
-import DropdownSection from '../Section';
 import DropdownArrow from './Arrow';
 import DropdownBackground from './Background';
-
-import { Container } from './styles';
+import DropdownSection from './Section';
 
 const refDuration = 0.22;
 
@@ -55,7 +53,7 @@ const DropdownRoot: React.FC = () => {
   }, [isActive]);
 
   return (
-    <Container>
+    <div style={{perspective: 2000}}>
         <motion.div
           className="dropdown-root"
           animate={{
@@ -70,7 +68,7 @@ const DropdownRoot: React.FC = () => {
           <motion.div
             className="dropdown-container"
             animate={{
-              x,
+              x, 
               width,
               height,
               pointerEvents: isActive ? 'unset' : 'none',
@@ -104,7 +102,7 @@ const DropdownRoot: React.FC = () => {
 
           <DropdownArrow isFirstInteraction={isFirstInteraction} />
         </motion.div>
-    </Container>
+    </div>
   );
 };
 

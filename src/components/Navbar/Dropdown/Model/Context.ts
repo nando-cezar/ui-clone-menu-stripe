@@ -5,7 +5,7 @@ export interface OptionModel {
     optionDimensions: any;
     contentDimensions?: any;
     optionCenterX: number;
-    WrapperContent: () => JSX.Element;
+    WrappedContent: () => JSX.Element;
     backgroundHeight: number;
 }
  

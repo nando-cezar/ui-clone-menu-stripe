@@ -1,7 +1,7 @@
 import React from 'react';
-import { Company, Developers, Products } from '../Content';
-import { DropdownOption, DropdownProvider } from './Dropdown';
 
+import { Company, Developers, Products } from '../Content';
+import { DropdownOption, DropdownProvider, DropdownRoot } from './Dropdown';
 import { Container, DropdownStyles } from './styles';
 
 const Navbar: React.FC = () => {
@@ -34,6 +34,8 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         </Container>
+
+        <DropdownRoot />
       </DropdownStyles>
     </DropdownProvider>
   );

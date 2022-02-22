@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Context from '../Model/Context';
 
-import { Container } from './styles';
 import { useDimensions } from '../Model/useDimensions';
 
 interface Props {
@@ -31,7 +30,7 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
 
   useEffect(() => {
     if (!registered && optionDimensions) {
-      const WrapperContent = () => {
+      const WrappedContent = () => {
         const contentRef = useRef<HTMLDivElement>(null);
 
         useEffect(() => {
@@ -51,7 +50,7 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
         id,
         optionDimensions,
         optionCenterX: optionDimensions.x + optionDimensions.width / 2,
-        WrapperContent,
+        WrappedContent,
         backgroundHeight
       })
 
@@ -77,7 +76,7 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
 
   const handleOpen = () => setTargetId(id);
   const handleClose = () => setTargetId(null);
-  const handleTouch = () => ((window as any).isMobile = true);
+  //const handleTouch = () => ((window as any).isMobile = true);
 
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -86,20 +85,18 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
   };
 
   return (
-    <Container>
-      <motion.button
-        className="dropdown-option"
-        ref={optionHook}
-        onMouseDown={handleClick}
-        onHoverStart={() => !(window as any).isMobile && handleOpen()}
-        onHoverEnd={() => !(window as any).isMobile && handleClose()}
-        onTouchStart={handleTouch}
-        onFocus={handleOpen}
-        onBlur={handleClose}
-      >
-        {name}
-      </motion.button>
-    </Container>
+    <motion.button
+      className="dropdown-option"
+      ref={optionHook}
+      onMouseDown={handleClick}
+      //onHoverStart={() => !(window as any).isMobile && handleOpen()}
+      //onHoverEnd={() => !(window as any).isMobile && handleClose()}
+      //onTouchStart={handleTouch}
+      onFocus={handleOpen}
+      onBlur={handleClose}
+    >
+      {name}
+    </motion.button>
   );
 };
 export default DropdownOption;
