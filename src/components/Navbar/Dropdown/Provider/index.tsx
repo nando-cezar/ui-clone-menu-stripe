@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import Context, { OptionModel } from '../Context';
+import Context, { OptionModel } from '../Model/Context';
 
 import { Container } from './styles';
-
-const DropdownProvider: React.FC = ({ children }) => {
+ 
+const  DropdownProvider: React.FC = ({ children }) => {
 
   const [registeredOptions, setRegisteredOptions] = useState<OptionModel[]>([]);
   const [targetId, setTargetId] = useState(null);
@@ -13,26 +13,26 @@ const DropdownProvider: React.FC = ({ children }) => {
   const registerOption = useCallback((model: OptionModel) => {
     setRegisteredOptions(items => [...items, model]);
   }, [setRegisteredOptions]);
-
-  const updateOptionProps = useCallback((optionId: any, props: OptionModel) => {
+ 
+  const updateOptionProps = useCallback((optionId: number, content: any) => {
     setRegisteredOptions((items) => items.map((item) => {
       if (item.id === optionId) {
-        item = { ...item, ...props };
+        item = { ...item, ...content };
       }
       return item;
     }));
   }, [setRegisteredOptions]);
 
-  const getOptionById = useCallback((optionId: any) => {
-    registeredOptions.find((item) => item.id === optionId)
+  const getOptionById = useCallback((optionId: number) => {
+    return registeredOptions.find((item) => item.id === optionId) || null;
   }, [registeredOptions]);
 
-  const deleteOptionById = useCallback((optionId: any) => {
+  const deleteOptionById = useCallback((optionId: number) => {
     setRegisteredOptions((items) => items.filter((item) => item.id !== optionId));
   }, [setRegisteredOptions]);
 
   useEffect(() => {
-    if (targetId !== null) setTargetId(targetId);
+    if (targetId !== null) setCachedId(targetId);
   }, [targetId]);
 
   return (
@@ -55,5 +55,4 @@ const DropdownProvider: React.FC = ({ children }) => {
     </Context.Provider>
   );
 };
-
 export default DropdownProvider;

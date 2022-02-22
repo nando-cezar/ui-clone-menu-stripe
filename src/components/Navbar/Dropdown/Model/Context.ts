@@ -1,13 +1,14 @@
 import React from 'react';
 
 export interface OptionModel {
-    id: any;
+    id: number;
     optionDimensions: any;
-    optionCenterX: any;
-    wrapperContent: any;
-    backgroundHeight: any;
+    contentDimensions?: any;
+    optionCenterX: number;
+    WrapperContent: () => JSX.Element;
+    backgroundHeight: number;
 }
-
+ 
 interface Context {
     registeredOptions: OptionModel[];
     targetId: any;
@@ -15,9 +16,9 @@ interface Context {
     setTargetId: any;
     setCachedId: any;
     registerOption: (model: OptionModel) => void;
-    updateOptionProps: (optionId: any, props: OptionModel) => void;
-    getOptionById: (optionId: any) => void;
-    deleteOptionById: (optionId: any) => void;
+    updateOptionProps: (optionId: number, content: any) => void;
+    getOptionById: (optionId: number) => OptionModel | null;
+    deleteOptionById: (optionId: number) => void;
 } 
 
 export default React.createContext<Context>({} as Context);
