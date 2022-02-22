@@ -5,8 +5,8 @@ import Context, { OptionModel } from '../Model/Context';
 const DropdownProvider: React.FC = ({ children }) => {
 
   const [registeredOptions, setRegisteredOptions] = useState<OptionModel[]>([]);
-  const [targetId, setTargetId] = useState(null);
-  const [cachedId, setCachedId] = useState(null);
+  const [targetId, setTargetId] = useState<number>(0);
+  const [cachedId, setCachedId] = useState<number>(0);
 
   const registerOption = useCallback((model: OptionModel) => {
     setRegisteredOptions(items => [...items, model]);
@@ -30,7 +30,7 @@ const DropdownProvider: React.FC = ({ children }) => {
   }, [setRegisteredOptions]);
 
   useEffect(() => {
-    if (targetId !== null) setCachedId(targetId);
+    if (targetId !== 0) setCachedId(targetId);
   }, [targetId]);
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 export interface OptionModel {
     id: number;
@@ -11,10 +11,10 @@ export interface OptionModel {
  
 interface Context {
     registeredOptions: OptionModel[];
-    targetId: any;
-    cachedId: any;
-    setTargetId: any;
-    setCachedId: any;
+    targetId: number;
+    cachedId: number;
+    setTargetId: Dispatch<SetStateAction<number>>;
+    setCachedId: Dispatch<SetStateAction<number>>;
     registerOption: (model: OptionModel) => void;
     updateOptionProps: (optionId: number, content: any) => void;
     getOptionById: (optionId: number) => OptionModel | null;

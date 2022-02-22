@@ -28,7 +28,7 @@ const DropdownRoot: React.FC = () => {
 
   const [hovering, setHovering] = useState(false);
 
-  const isActive = targetId !== null || hovering;
+  const isActive = targetId !== 0 || hovering;
 
   /** First interaction */
   const [hasInteracted, setHasInteracted] = useState(false);

@@ -10,6 +10,12 @@ interface Props {
   backgroundHeight: number;
 }
 
+declare global {
+  interface Window {
+    isMobile?: boolean;
+  }
+}
+
 let lastOptionId = 0;
 
 const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHeight }) => {
@@ -55,6 +61,7 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
       })
 
       setRegistered(true);
+
     } else if (registered && optionDimensions) {
       updateOptionProps(id, {
         optionDimensions,
@@ -75,8 +82,8 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
   useEffect(() => deleteOptionById(id), [deleteOptionById, id]);
 
   const handleOpen = () => setTargetId(id);
-  const handleClose = () => setTargetId(null);
-  //const handleTouch = () => ((window as any).isMobile = true);
+  const handleClose = () => setTargetId(0);
+  const handleTouch = () => (window.isMobile = true);
 
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -89,9 +96,9 @@ const DropdownOption: React.FC<Props> = ({ name, content: Content, backgroundHei
       className="dropdown-option"
       ref={optionHook}
       onMouseDown={handleClick}
-      //onHoverStart={() => !(window as any).isMobile && handleOpen()}
-      //onHoverEnd={() => !(window as any).isMobile && handleClose()}
-      //onTouchStart={handleTouch}
+      onHoverStart={() => !window.isMobile && handleOpen()}
+      onHoverEnd={() => !window.isMobile && handleClose()}
+      onTouchStart={handleTouch}
       onFocus={handleOpen}
       onBlur={handleClose}
     >
